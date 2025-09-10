@@ -4,12 +4,18 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+
+
 # Carrega o dicionário salvo previamente salvo em arquivo
-dados_carregados = torch.load('select_data_np.pt', weights_only=False)
+from scipy.io import loadmat
+dados_carregados = loadmat('select_data_np.mat')
+
 
 # Carrega os arrays numpy
 features = dados_carregados['features']
-labels = dados_carregados['labels']
+labels = dados_carregados['labels'].squeeze()
+
+
 
 def criar_box_plot(idx):
     feature_a_plotar = features[:, idx]

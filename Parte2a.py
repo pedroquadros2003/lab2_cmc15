@@ -1,5 +1,5 @@
 import torch
-import numpy
+import numpy as np
 from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import chi2
 
@@ -20,10 +20,8 @@ labels = labels.numpy()
 
 
 ## Salvando os resultados obtidos, já no formato de array numpy, para acessá-los diretamente depois
-torch.save({
-    'features': features,
-    'labels': labels
-}, 'select_data_np.pt')
+from scipy.io import savemat
+savemat('select_data_np.mat', {'features': features, 'labels':labels })
 
 
 print("Features extraídas:", features.shape) # Deve ser [170, 5]
